@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void check(int **arr, int rs, int rf, int cs, int cf, int N) {
+
+void check(char **arr, int rs, int rf, int cs, int cf, int N) {
 	for (int i = rs; i < rf; i++) {
 		for (int j = cs; j < cf; j++) {
 			if (arr[i][j] != arr[rs][cs]) {
@@ -15,20 +16,24 @@ void check(int **arr, int rs, int rf, int cs, int cf, int N) {
 			}
 		}
 	}
-	printf("%d", arr[rs][cs]);
+	printf("%c", arr[rs][cs]);
 	return;
 }
 
-/*void check(int **arr, int rs, int rf, int cs, int cf, int N) {
+/*void check(char **arr, int rs, int rf, int cs, int cf, int N) {
 	bool flag = false;
 	for (int i = rs; i < rf; i++) {
 		for (int j = cs; j < cf; j++) {
+			//printf("%c", arr[i][j]);
 			if (arr[i][j] != arr[rs][cs]) {
 				flag = true;
 			}
 		}
+		//printf("\n");
 	}
-	if(flag == false) printf("%d", arr[rs][cs]);
+
+	//printf("\n");
+	if(flag == false) printf("%c", arr[rs][cs]);
 
 	if (flag == true) {
 		printf("(");
@@ -39,24 +44,23 @@ void check(int **arr, int rs, int rf, int cs, int cf, int N) {
 		printf(")");
 	}
 	return;
-}*/
-
+}
+*/
 int main() {
 	int N;
-	int **arr;
-	int temp;
+	char **arr;
+	char temp[64];
 
 	scanf("%d", &N);
-	arr = (int **)malloc(sizeof(int*)* N);
+	arr = (char **)malloc(sizeof(char*)* N);
 	for (int i = 0; i < N; i++) {
-		arr[i] = (int *)malloc(sizeof(int)*N);
-		scanf("%d", &temp);
-		for (int j = 1; j <= N; j++) {
-			arr[i][N - j] = temp % 10;
-			temp /= 10;
+		arr[i] = (char *)malloc(sizeof(char)*N);
+		scanf("%s", &temp);
+		for (int j = 0; j < N; j++) {
+			arr[i][j] = temp[j];
 		}
 	}
 
-	printf("\n");
 	check(arr, 0, N, 0, N, N);
+	return 0;
 }
